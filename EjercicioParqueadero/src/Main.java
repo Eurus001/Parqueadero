@@ -6,16 +6,13 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Parqueadero parqueadero = new Parqueadero();
+        int opcion = 0;
 
-        while (true) {
+
+        while (opcion != 9) {
             mostrarMenu();
-            int opcion = sc.nextInt();
+            opcion = sc.nextInt();
             sc.nextLine();
-
-            if (opcion == 8) {
-                System.out.println("Saliendo del sistema de parqueadero...");
-                break;
-            }
 
             switch (opcion) {
                 case 1:
@@ -40,6 +37,9 @@ public class Main {
                 case 7:
                     ejecutarFuncionesAdicionales(parqueadero);
                     break;
+                case 8:
+                    desocuparParqueadero(parqueadero);
+                    break;
                 default:
                     System.out.println("Opción no válida.");
             }
@@ -57,7 +57,8 @@ public class Main {
         System.out.println("5. Avanzar la hora");
         System.out.println("6. Cambiar tarifa");
         System.out.println("7. Funciones adicionales");
-        System.out.println("8. Salir");
+        System.out.println("8. Desocupar parqueadero");
+        System.out.println("9. Salir");
         System.out.print("Seleccione una opción: ");
     }
 
@@ -89,6 +90,11 @@ public class Main {
         scanner.nextLine();
         parqueadero.cambiarTarifa(tarifa);
         System.out.println("Tarifa actualizada a " + tarifa);
+    }
+
+    private static void desocuparParqueadero(Parqueadero parqueadero) {
+        int carrosDesocupados = parqueadero.desocuparParqueadero();
+        System.out.println("Se han desocupado " + carrosDesocupados + " carros del parqueadero.");
     }
 
     private static void ejecutarFuncionesAdicionales(Parqueadero parqueadero) {
