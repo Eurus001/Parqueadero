@@ -4,13 +4,13 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         Parqueadero parqueadero = new Parqueadero();
 
         while (true) {
             mostrarMenu();
-            int opcion = scanner.nextInt();
-            scanner.nextLine(); // Limpiar el buffer del scanner
+            int opcion = sc.nextInt();
+            sc.nextLine();
 
             if (opcion == 8) {
                 System.out.println("Saliendo del sistema de parqueadero...");
@@ -19,10 +19,10 @@ public class Main {
 
             switch (opcion) {
                 case 1:
-                    ingresarCarro(scanner, parqueadero);
+                    ingresarCarro(sc, parqueadero);
                     break;
                 case 2:
-                    sacarCarro(scanner, parqueadero);
+                    sacarCarro(sc, parqueadero);
                     break;
                 case 3:
                     System.out.println("Ingresos del parqueadero: " + parqueadero.darMontoCaja());
@@ -35,7 +35,7 @@ public class Main {
                     System.out.println("Hora actual del parqueadero: " + parqueadero.darHoraActual());
                     break;
                 case 6:
-                    cambiarTarifa(scanner, parqueadero);
+                    cambiarTarifa(sc, parqueadero);
                     break;
                 case 7:
                     ejecutarFuncionesAdicionales(parqueadero);
@@ -45,7 +45,7 @@ public class Main {
             }
         }
 
-        scanner.close();
+        sc.close();
     }
 
     private static void mostrarMenu() {
@@ -65,20 +65,28 @@ public class Main {
         System.out.print("Ingrese la placa del carro: ");
         String placa = scanner.nextLine();
         int resultado = parqueadero.entrarCarro(placa);
-        // Aquí manejar el resultado de ingresar un carro
+        if ( resultado == 0){
+            System.out.println("Ingreso de carro existoso");
+        }else {
+            System.out.println("Error entrada de carro");
+        }
     }
 
     private static void sacarCarro(Scanner scanner, Parqueadero parqueadero) {
         System.out.print("Ingrese la placa del carro a sacar: ");
         String placa = scanner.nextLine();
-        int pago = parqueadero.sacarCarro(placa);
-        // Aquí manejar el resultado de sacar un carro
+        int resultado = parqueadero.sacarCarro(placa);
+        if ( resultado == 0){
+            System.out.println("Egreso de carro existoso");
+        }else {
+            System.out.println("Error egreso de carro");
+        }
     }
 
     private static void cambiarTarifa(Scanner scanner, Parqueadero parqueadero) {
         System.out.print("Ingrese la nueva tarifa por hora: ");
         int tarifa = scanner.nextInt();
-        scanner.nextLine(); // Limpiar el buffer del scanner
+        scanner.nextLine();
         parqueadero.cambiarTarifa(tarifa);
         System.out.println("Tarifa actualizada a " + tarifa);
     }
