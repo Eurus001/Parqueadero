@@ -1,6 +1,5 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -40,6 +39,8 @@ public class Main {
                 case 8:
                     desocuparParqueadero(parqueadero);
                     break;
+                case 9:
+                    System.out.println("Saliendo");
                 default:
                     System.out.println("Opción no válida.");
             }
@@ -138,5 +139,12 @@ public class Main {
         } else {
             System.out.println("No hay carros que hayan estado 24 horas o más en el parqueadero.");
         }
+
+        //Metodo 1
+        System.out.println(parqueadero.metodo1());
+
+        //Metodo 2
+        System.out.println(parqueadero.metodo2());
+
     }
 }
